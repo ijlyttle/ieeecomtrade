@@ -12,3 +12,13 @@ We could be provided a header file.
 We could be provided a data file.
 
 We use the header file to make a list of metadata. Some of this metadata is useful only to read the data, other metadata is useful to understand the context of the waveform.
+
+We could have a functions to read the header file, data file, and zip file.
+
+``` r
+ctread_header(file)
+ctread_data(file)
+ctread_zip(file)
+```
+
+Like **readr**, `file` could be a path to a file, a connection, or literal data (either a single string or a raw vector).
