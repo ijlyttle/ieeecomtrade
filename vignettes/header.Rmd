@@ -1,0 +1,77 @@
+---
+title: "Header File"
+author: "Ian Lyttle"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{header}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Make sure you put in the reference to the standard.
+
+Right now, the only version this package supports is 1999.
+
+Here's a set of data dictionaries for the list returned by the header-reader:
+
+ Variable         | Type       | Critical | Description
+----------------- | ---------- | -------- | -------------------------------------------------
+`station_name`    | character  | no       | name of the substation location
+`rec_dev_id`      | character  | no       | id number or name of recording device
+`rev_year`        | factor     | yes      | integer (1991, 1999, 2013)
+`TT`              | integer    | yes      | total number of channel, must be sum of `##A` and `##D`
+`##A`             | integer    | yes      | number of analog channels
+`##D`             | integer    | yes      | number of digital channels
+`analog_channel`  | data frame | no       | description of analog channels, number of rows must equal `##A`
+`digital_channel` | data frame | no       | description of digital channels, number of rows must equal `##D`
+`lf`              | double     | no       | line frequency (Hz.)
+`nrates`          | integer    | yes      | number of sampling rates in data file 
+`sampling_rate`   | data frame | yes      | description of sampling rates
+`dtm_first`       | POSIXct    | no       | datetime of the first observation
+`dtm_trigger`     | POSIXct    | no       | datetime of the trigger point
+`ft`              | factor     | yes      | character ("ascii", "binary")
+`timemult`        | double     | yes      | multiplier for the `timestamp` field in the data file
+
+This list contains some data frames.
+
+`analog_channel`
+
+ Variable         | Type       | Critical | Description
+----------------- | ---------- | -------- | -------------------------------------------------
+`An`              | integer    | yes      | index of the analog channel
+`ch_id`           | character  | no       | channel identifier
+`ph`              | character  | no       | phase identifier
+`ccbm`            | character  | no       | circuit-component being monitored
+`uu`              | character  | yes      | units
+`a`               | double     | yes      | channel multiplier
+`b`               | double     | yes      | channel offset
+`skew`            | double     | no       | channel time-skew
+`min`             | integer    | yes      | minimum possible data value
+`max`             | integer    | yes      | maximum possible data value
+`primary`         | double     | yes      | voltage or current transformer-ratio primary factor
+`secondary`       | double     | yes      | voltage or current transformer-ratio secondary factor
+`PS`              | factor     | yes      | character ("p", "s") indicated if value (`a * x + b`) is primary or secondary
+
+`digital_channel`
+
+ Variable         | Type       | Critical | Description
+----------------- | ---------- | -------- | -------------------------------------------------
+`Dn`              | integer    | yes      | index of the digital channel
+`ch_id`           | character  | no       | channel identifier
+`ph`              | character  | no       | phase identifier
+`ccbm`            | character  | no       | circuit-component being monitored
+`y`               | integer    | yes      | normal state for the digital channel, one of: `c(0L, 1L)`
+
+`sampling_rate`
+
+ Variable         | Type       | Critical | Description
+----------------- | ---------- | -------- | -------------------------------------------------
+`samp`            | integer    | yes      | sample rate (Hz.)
+`endsamp`         | integer    | yes      | sample number, `n` of the last sample at this rate
+
+Note: the cases `nrates != 1` will be tricky.
+
+Note: initially, we will not support primary/secondary scaling.
+
+
