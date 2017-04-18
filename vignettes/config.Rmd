@@ -1,10 +1,10 @@
 ---
-title: "Header File"
+title: "Configuration File"
 author: "Ian Lyttle"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{header}
+  %\VignetteIndexEntry{config}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,13 +13,13 @@ Make sure you put in the reference to the standard.
 
 Right now, the only version this package supports is 1999.
 
-Here's a set of data dictionaries for the list returned by the header-reader:
+Here's a set of data dictionaries for the list returned by the configuration-reader:
 
  Variable         | Type       | Critical | Description
 ----------------- | ---------- | -------- | -------------------------------------------------
 `station_name`    | character  | no       | name of the substation location
 `rec_dev_id`      | character  | no       | id number or name of recording device
-`rev_year`        | factor     | yes      | integer (1991, 1999, 2013)
+`rev_year`        | factor     | yes      | revision year, integer (1991, 1999, 2013) 
 `TT`              | integer    | yes      | total number of channel, must be sum of `##A` and `##D`
 `##A`             | integer    | yes      | number of analog channels
 `##D`             | integer    | yes      | number of digital channels
@@ -28,9 +28,9 @@ Here's a set of data dictionaries for the list returned by the header-reader:
 `lf`              | double     | no       | line frequency (Hz.)
 `nrates`          | integer    | yes      | number of sampling rates in data file 
 `sampling_rate`   | data frame | yes      | description of sampling rates
-`dtm_first`       | POSIXct    | no       | datetime of the first observation
-`dtm_trigger`     | POSIXct    | no       | datetime of the trigger point
-`ft`              | factor     | yes      | character ("ascii", "binary")
+`dtm_first`       | nanotime   | no       | datetime of the first observation
+`dtm_trigger`     | nanotime   | no       | datetime of the trigger point
+`ft`              | factor     | yes      | file type, character ("ascii", "binary")
 `timemult`        | double     | yes      | multiplier for the `timestamp` field in the data file
 
 This list contains some data frames.
@@ -51,7 +51,7 @@ This list contains some data frames.
 `max`             | integer    | yes      | maximum possible data value
 `primary`         | double     | yes      | voltage or current transformer-ratio primary factor
 `secondary`       | double     | yes      | voltage or current transformer-ratio secondary factor
-`PS`              | factor     | yes      | character ("p", "s") indicated if value (`a * x + b`) is primary or secondary
+`PS`              | factor     | yes      | indicates if value (`a * x + b`) is primary or secondary, character ("p", "s") 
 
 `digital_channel`
 
@@ -67,7 +67,7 @@ This list contains some data frames.
 
  Variable         | Type       | Critical | Description
 ----------------- | ---------- | -------- | -------------------------------------------------
-`samp`            | integer    | yes      | sample rate (Hz.)
+`samp`            | double     | yes      | sample rate (Hz.)
 `endsamp`         | integer    | yes      | sample number, `n` of the last sample at this rate
 
 Note: the cases `nrates != 1` will be tricky.

@@ -15,9 +15,16 @@ Depends: R (>= 3.3.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.0.9000
+RoxygenNote: 6.0.1.9000
+Roxygen: list(markdown = TRUE)
 URL: https://github.com/ijlyttle/ieeecomtrade
 BugReports: https://github.com/ijlyttle/ieeecomtrade/issues
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    testthat,
+    forcats,
+    tibble
 VignetteBuilder: knitr
+Imports: assertthat,
+    stringr,
+    nanotime
