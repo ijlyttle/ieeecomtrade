@@ -5,7 +5,7 @@ library("nanotime")
 library("lubridate")
 
 # consider a function to access
-file <- system.file("extdata", "comtrade_1999_ascii", "victoria_keating.CFG", package = "ieeecomtrade")
+file <- ctread_example("keating_1999.CFG")
 
 spec <- list(
   station_name = "4_Victoria_Keating.main_7650",

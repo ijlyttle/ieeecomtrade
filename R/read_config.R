@@ -2,7 +2,7 @@
 #'
 #' @param file character, single line, path to a file or a single string
 #'
-#' @return list, specified in `vignette("header")`
+#' @return list, specified in `vignette("config")`
 #' @export
 #'
 ctread_config <- function(file){
@@ -15,6 +15,8 @@ ctread_config <- function(file){
 
   if (is_file) {
     text <- readr::read_lines(file)
+  } else {
+    text <- stringr::str_split(file, "\n")
   }
 
   # text is a vector of character strings
