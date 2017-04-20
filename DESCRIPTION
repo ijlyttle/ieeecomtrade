@@ -27,4 +27,8 @@ Suggests: knitr,
 VignetteBuilder: knitr
 Imports: assertthat,
     stringr,
-    nanotime
+    nanotime,
+    tidyr,
+    magrittr,
+    lubridate,
+    readr

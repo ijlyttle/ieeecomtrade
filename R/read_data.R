@@ -1,14 +1,35 @@
 #' read data file
 #'
-#' @inheritParams ctread_config
-#' @param n_analog  integer, number of analog channels
-#' @param n_digital integer, number of digital channels
-#' @param n_sample  integer, maximum number of records to read
+#' @inheritParams ct_read_config
+#' @param config list created using [`ct_read_config()`]
 #'
 #' @return tibble, specified in `vignette("data")`
 #' @export
 #'
-ctread_data <- function(file, n_analog, n_digital, n_max = Inf) {
+ct_read_data_config <- function(file, config){
+
+  # TODO: validate config
+  # TODO: find a way to check for the existance of config$sampling_rate$endsamp
+
+  ct_read_data(
+    file,
+    n_analog = config[["##A"]],
+    n_digital = config[["##D"]],
+    n_max = max(config[["sampling_rate"]][["endsamp"]])
+  )
+}
+
+#' read data file
+#'
+#' @inheritParams ct_read_config
+#' @param n_analog  integer, number of analog channels
+#' @param n_digital integer, number of digital channels
+#' @param n_max  integer, maximum number of records to read
+#'
+#' @return tibble, specified in `vignette("data")`
+#' @export
+#'
+ct_read_data <- function(file, n_analog, n_digital, n_max = Inf) {
 
   make_names <- function(root, n) {
 
@@ -18,10 +39,7 @@ ctread_data <- function(file, n_analog, n_digital, n_max = Inf) {
       return(NULL)
     }
 
-    names <-
-      n %>%
-      seq() %>%
-      sprintf(paste0(root, "%06d"), .)
+    names <- sprintf(paste0(root, "%06d"), seq(n))
 
     names
   }

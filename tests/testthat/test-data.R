@@ -2,10 +2,10 @@ context("data")
 
 library("dplyr")
 
-config <- ctread_example("keating_1999.CFG") %>% ctread_config()
+config <- ct_example("keating_1999.CFG") %>% ct_read_config()
 data_full <-
-  ctread_example("keating_1999.DAT") %>%
-  ctread_data(
+  ct_example("keating_1999.DAT") %>%
+  ct_read_data(
     config[["##A"]],
     config[["##D"]],
     max(config$sampling_rate$endsamp)

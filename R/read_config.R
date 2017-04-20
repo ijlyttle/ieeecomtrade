@@ -5,7 +5,7 @@
 #' @return list, specified in `vignette("config")`
 #' @export
 #'
-ctread_config <- function(file){
+ct_read_config <- function(file){
 
   assertthat::assert_that(
     is.character(file)
@@ -233,6 +233,7 @@ parse_timemult <- function(text) {
 #' @param ...   other args passed to [readr::read_csv()]
 #'
 #' @return tibble
+#' @keywords internal
 #'
 parse_config <- function(text, ...){
 
@@ -252,6 +253,7 @@ parse_config <- function(text, ...){
 #' @inheritParams parse_config
 #'
 #' @return tibble
+#' @keywords internal
 #'
 parse_config_list <- function(text, ...){
 

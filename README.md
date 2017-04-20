@@ -16,9 +16,9 @@ We use the header file to make a list of metadata. Some of this metadata is usef
 We could have a functions to read the header file, data file, and zip file.
 
 ``` r
-ctread_header(file)
-ctread_data(file)
-ctread_zip(file)
+ct_read_header(file)
+ct_read_data(file)
+ct_read_zip(file)
 ```
 
 Like **readr**, `file` could be a path to a file, a connection, or literal data (either a single string or a raw vector).

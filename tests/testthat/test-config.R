@@ -5,7 +5,7 @@ library("nanotime")
 library("lubridate")
 
 # consider a function to access
-file <- ctread_example("keating_1999.CFG")
+file <- ct_example("keating_1999.CFG")
 
 spec <- list(
   station_name = "4_Victoria_Keating.main_7650",
@@ -46,5 +46,5 @@ spec$analog_channel$PS <-
   factor(levels = c("p", "s"))
 
 test_that("config works", {
-  expect_identical(ctread_config(file), spec)
+  expect_identical(ct_read_config(file), spec)
 })
