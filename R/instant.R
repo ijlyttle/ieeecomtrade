@@ -32,6 +32,12 @@ ct_instant <- function(ct, channel_name = NULL, use_timestamp = FALSE,
 
   side <- match.arg(side)
 
+  # look at channel_name, make sure that lengths match up
+  assertthat::assert_that(
+    identical(length(channel_name[["analog"]]), ct[["config"]][["##A"]]),
+    identical(length(channel_name[["digital"]]), ct[["config"]][["##D"]])
+  )
+
   # timestamp and sample-rate
   has_sampling_rate <- ct[["config"]][["nrates"]] > 0L
   has_timestamp <- any(!is.na(ct[["data"]][["timestamp"]]))
@@ -72,6 +78,17 @@ ct_instant <- function(ct, channel_name = NULL, use_timestamp = FALSE,
   # reorder columns
   data <- data %>%
     dplyr::select_(.dots = list(~instant, ~dplyr::everything()))
+
+  # scale analog columns
+  for (i in seq_along(channel_name[["analog"]])) {
+
+    ch_name <- channel_name[["analog"]][[i]]
+
+    scale_channel <- fn_scale_channel(ct[["config"]], i)
+    scale_side <- fn_scale_side(ct[["config"]], i, side)
+
+    data[[ch_name]] <- data[[ch_name]] %>% scale_channel() %>% scale_side()
+  }
 
   data
 }
@@ -114,26 +131,48 @@ ct_channel_name <- function(ct, attr = c("ch_id", "ph")) {
 #'
 fn_scale_channel <- function(config, i_analog) {
 
-  NULL
+  a <- config[["analog_channel"]][["a"]][[i_analog]]
+  b <- config[["analog_channel"]][["b"]][[i_analog]]
+
+  function(x) {
+    (a * x) + b
+  }
 }
-
-
-# given a config file and a side return a function to scale a value
 
 #' Get function to scale side
 #'
 #' Given a config file and a side, return a function to scale a value
 #'
 #' @inheritParams comtrade
+#' @inheritParams fn_scale_channel
 #' @inheritParams ct_instant
 #'
-#' @return
+#' @return function that takes a value and returns a scaled value
 #' @keywords internal
 #' @export
 #'
-fn_scale_side <- function(config, side = c("primary", "secondary")) {
+fn_scale_side <- function(config, i_analog, side = c("primary", "secondary")) {
 
-  NULL
+  side <- match.arg(side)
+
+  scale <- c(
+    primary = config[["analog_channel"]][["primary"]][[i_analog]],
+    secondary = config[["analog_channel"]][["secondary"]][[i_analog]]
+  )
+
+  measurement_key <- c(
+    p = "primary",
+    s = "secondary"
+  )
+
+  measurement <-
+    measurement_key %>%
+    `[[`(as.character(config[["analog_channel"]][["PS"]][[i_analog]]))
+
+  function(x) {
+    x * scale[[side]] / scale[[measurement]]
+  }
+
 }
 
 get_instant <- function(sampling_rate) {

@@ -4,13 +4,18 @@
 \alias{fn_scale_side}
 \title{Get function to scale side}
 \usage{
-fn_scale_side(config, side = c("primary", "secondary"))
+fn_scale_side(config, i_analog, side = c("primary", "secondary"))
 }
 \arguments{
 \item{config}{list, configuration generated using \code{\link[=ct_read_config]{ct_read_config()}}}
 
+\item{i_analog}{integer, analog channel-number}
+
 \item{side}{character to indicate if we want primary or
 secondary values}
+}
+\value{
+function that takes a value and returns a scaled value
 }
 \description{
 Given a config file and a side, return a function to scale a value
