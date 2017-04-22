@@ -57,7 +57,8 @@ ct_read_config <- function(file){
   index <- index + 2
 
   # sampling_rate
-  config[["sampling_rate"]] <- parse_sampling_rate(text[index + (1:config$nrates)])
+  config[["sampling_rate"]] <-
+    parse_sampling_rate(text[index + (1:max(config$nrates, 1))])
   index <- index + config$nrates
 
   # datetime - using nanotime package for because we need better precision

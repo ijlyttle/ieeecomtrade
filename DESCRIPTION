@@ -31,4 +31,6 @@ Imports: assertthat,
     tidyr,
     magrittr,
     lubridate,
-    readr
+    readr,
+    dplyr,
+    purrr
