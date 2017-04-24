@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • ieeecomtrade</title>
+<title>path to example — ct_example • ieeecomtrade</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -77,100 +77,66 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.0.0.9000</small>
-      </h1>
+    <h1>path to example</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    
+    <p>Currently there are three example-files that all come from the same waveform.
+The two files, <code>"keating_1999.CFG"</code> and <code>"keating_1999.DAT"</code> are the contents of
+<code>"keating_1999.zip"</code>.</p>
+    
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <pre class="usage"><span class='fu'>ct_example</span>(<span class='no'>path</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>path</th>
+      <td><p>character, name of file</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="comtrade.html">comtrade</a></code> </p>
-          </td>
-          <td><p>comtrade constructor</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_attr.html">ct_attr</a></code> </p>
-          </td>
-          <td><p>Make a function that gets variable-names</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_channel_name.html">ct_channel_name</a></code> </p>
-          </td>
-          <td><p>Helper function for channel names</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_example.html">ct_example</a></code> </p>
-          </td>
-          <td><p>path to example</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_instant.html">ct_instant</a></code> </p>
-          </td>
-          <td><p>Make an "instant" data frame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_read_config.html">ct_read_config</a></code> </p>
-          </td>
-          <td><p>Read config file</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_read_data_config.html">ct_read_data_config</a></code> </p>
-          </td>
-          <td><p>Read data file using config information</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_read_data.html">ct_read_data</a></code> </p>
-          </td>
-          <td><p>Read data file</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_read_zip.html">ct_read_zip</a></code> </p>
-          </td>
-          <td><p>Read a zip file to make a comtrade object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="keating_1999.html">keating_1999</a></code> </p>
-          </td>
-          <td><p>Keating waveform, 1999 format</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <p>path to the file</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
+    <span class='fu'>ct_example</span>(<span class='st'>"keating_1999.CFG"</span>)
+    <span class='fu'>ct_example</span>(<span class='st'>"keating_1999.DAT"</span>)
+    <span class='fu'>ct_example</span>(<span class='st'>"keating_1999.zip"</span>)
+})
+  <span class='fu'>ct_example</span>(<span class='st'>"keating_1999.zip"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='ct_read_zip.html'>ct_read_zip</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='ct_instant.html'>ct_instant</a></span>()</div><div class='output co'>#&gt; # A tibble: 2,048 × 9
+#&gt;         instant         I1       I2        I3           I4        V1       V2
+#&gt;           &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1  0.000000e+00  -5.671533 175.6419 -177.0687 1.100606e+00 -208.3977 495.1681
+#&gt; 2  3.256561e-05  -7.252448 175.8001 -174.1653 8.254547e-01 -215.3405 495.5097
+#&gt; 3  6.513121e-05  -9.742390 174.7522 -171.7754 1.705303e-13 -221.8280 497.2180
+#&gt; 4  9.769682e-05 -12.014955 174.7918 -169.2670 1.375758e+00 -226.4944 498.6985
+#&gt; 5  1.302624e-04 -14.247998 174.6336 -167.0154 1.650909e+00 -230.1366 498.3568
+#&gt; 6  1.628280e-04 -16.322949 174.3766 -165.6525 5.503031e-01 -235.4859 496.7624
+#&gt; 7  1.953936e-04 -18.516469 174.2580 -163.7169 5.503031e-01 -241.6320 496.0791
+#&gt; 8  2.279592e-04 -21.085456 174.4161 -161.3468 2.751516e-01 -248.5748 496.1930
+#&gt; 9  2.605248e-04 -22.903508 173.9021 -159.8062 1.705303e-13 -254.1518 495.7375
+#&gt; 10 2.930904e-04 -24.780845 174.0405 -158.6014 1.375758e+00 -258.1354 495.9653
+#&gt; # ... with 2,038 more rows, and 2 more variables: V3 &lt;dbl&gt;, V4 &lt;dbl&gt;</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

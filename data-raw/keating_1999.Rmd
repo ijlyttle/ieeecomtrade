@@ -1,0 +1,31 @@
+---
+output: github_document
+---
+
+```{r}
+library("ieeecomtrade")
+library("devtools")
+```
+
+This is to document how the `keating_1999` comtrade object is constructed and put into the package's data.
+
+First, let's create the constituent elements:
+
+```{r}
+config <- ct_example("keating_1999.CFG") %>% ct_read_config()
+data <- ct_example("keating_1999.DAT") %>% ct_read_data_config(config)
+```
+
+Next, construct the comtrade object:
+
+```{r}
+keating_1999 <- comtrade(config = config, data = data)
+
+print(keating_1999)
+```
+
+Finally, write to package-data:
+
+```{r}
+use_data(keating_1999, overwrite = TRUE)
+```

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_data.R
 \name{ct_read_data_config}
 \alias{ct_read_data_config}
-\title{read data file}
+\title{Read data file using config information}
 \usage{
 ct_read_data_config(file, config)
 }
@@ -12,8 +12,15 @@ ct_read_data_config(file, config)
 \item{config}{list created using \code{\link[=ct_read_config]{ct_read_config()}}}
 }
 \value{
-tibble, specified in \code{vignette("data")}
+tibble (data frame)
 }
 \description{
-read data file
+This is a wrapper for \code{\link[=ct_read_data]{ct_read_data()}}.
+}
+\examples{
+  config <- ct_example("keating_1999.CFG") \%>\% ct_read_config()
+  ct_example("keating_1999.DAT") \%>\% ct_read_data_config(config)
+}
+\seealso{
+\code{\link[=ct_read_data]{ct_read_data()}}
 }

@@ -1,8 +1,14 @@
-#' read config file
+#' Read config file
+#'
+#' The thought here is to return a list where the names hew as closely as
+#' possible to the names in the standard.
 #'
 #' @param file character, single line, path to a file or a single string
 #'
 #' @return list, specified in `vignette("config")`
+#' @examples
+#'   ct_example("keating_1999.CFG") %>%
+#'   ct_read_config()
 #' @export
 #'
 ct_read_config <- function(file){
@@ -13,11 +19,12 @@ ct_read_config <- function(file){
 
   is_file <- !stringr::str_detect(file, "\n")
 
-  if (is_file) {
-    text <- readr::read_lines(file)
-  } else {
-    text <- stringr::str_split(file, "\n")
-  }
+  text <- readr::read_lines(file)
+  # if (is_file) {
+  #   text <- readr::read_lines(file)
+  # } else {
+  #   text <- stringr::str_split(file, "\n")
+  # }
 
   # text is a vector of character strings
 

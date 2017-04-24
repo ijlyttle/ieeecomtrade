@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_config.R
 \name{ct_read_config}
 \alias{ct_read_config}
-\title{read config file}
+\title{Read config file}
 \usage{
 ct_read_config(file)
 }
@@ -13,5 +13,10 @@ ct_read_config(file)
 list, specified in \code{vignette("config")}
 }
 \description{
-read config file
+The thought here is to return a list where the names hew as closely as
+possible to the names in the standard.
+}
+\examples{
+  ct_example("keating_1999.CFG") \%>\%
+  ct_read_config()
 }

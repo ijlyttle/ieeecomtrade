@@ -14,24 +14,56 @@ knitr::opts_chunk$set(
 
 # ieeecomtrade
 
-Here is where I start to argue with myself on the API.
+This is a package to help you work with IEEE COMTRADE files. Currently, this package is restricted to:
 
-We could be provided a zip file.
+- COMTRADE 1999 format
+- considers only configuration and data files
+- data files must be ASCII
 
-We could be provided a header file.
+In time, it is hoped to lift these restrictions, particularly as the need may present itself.
 
-We could be provided a data file.
+## Installation
 
-We use the header file to make a list of metadata. Some of this metadata is useful only to read the data, other metadata is useful to understand the context of the waveform.
+This package is not yet on CRAN. However, you can install it from GitHub:
 
-We could have a functions to read the header file, data file, and zip file.
-
-```r
-ct_read_header(file)
-ct_read_data(file)
-ct_read_zip(file)
+```{r, eval=FALSE}
+# install.packages("devtools")
+install_github("ijlyttle/ieeecomtrade")
 ```
 
-Like **readr**, `file` could be a path to a file, a connection, or literal data (either a single string or a raw vector).
+## Usage
 
+The central object in this package is a **comtrade** object. You can build a comtrade object by reading in the configuration and data files, or you can read a zip file that contains exactly one configuration file and exactly one data file.
 
+Let's look at reading in some sample files provided with this package. As a first example, let's build a comtrade object by reading the configuration file and data file individually.
+
+```{r}
+library("ieeecomtrade")
+
+config <- 
+  ct_example("keating_1999.CFG") %>%  # returns a file path
+  ct_read_config()                    # returns a configuration object
+
+data <- 
+  ct_example("keating_1999.DAT") %>%
+  ct_read_data_config(config)
+  
+keating <- comtrade(config = config, data = data)  
+```
+Similarly, you can read from a zip file
+
+```{r}
+keating <- 
+  ct_example("keating_1999.zip") %>%
+  ct_read_zip()
+```
+
+If you want a data frame with scaled values and a timestamp:
+
+```{r}
+ct_instant(keating)
+```
+
+## Code if Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

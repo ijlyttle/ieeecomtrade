@@ -13,5 +13,17 @@ ct_example(path)
 path to the file
 }
 \description{
-path to example
+Currently there are three example-files that all come from the same waveform.
+The two files, \code{"keating_1999.CFG"} and \code{"keating_1999.DAT"} are the contents of
+\code{"keating_1999.zip"}.
+}
+\examples{
+\dontrun{
+  ct_example("keating_1999.CFG")
+  ct_example("keating_1999.DAT")
+  ct_example("keating_1999.zip")
+}
+  ct_example("keating_1999.zip") \%>\%
+  ct_read_zip() \%>\%
+  ct_instant()
 }

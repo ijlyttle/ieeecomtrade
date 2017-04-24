@@ -4,16 +4,17 @@
 \alias{ct_instant}
 \title{Make an "instant" data frame}
 \usage{
-ct_instant(ct, channel_name = NULL, use_timestamp = FALSE,
+ct_instant(ct, channel_name = ct_attr("ph"), use_timestamp = FALSE,
   side = c("primary", "secondary"))
 }
 \arguments{
 \item{ct}{comtrade object (see \code{\link[=comtrade]{comtrade()}})}
 
-\item{channel_name}{list with two members: \code{analog} and \code{digital} -
-each of which is a vector of character column-names. You can use
-\code{\link[=ct_channel_name]{ct_channel_name()}} to get names. \code{NULL} indicates
-to use the default names.}
+\item{channel_name}{list or function -
+list has two members: \code{analog} and \code{digital} -
+each of which is a vector of character column-names.
+function must take one argument, \code{ct}, and return such a list of names.
+A convenience function, \code{\link[=ct_attr]{ct_attr()}} is provided.}
 
 \item{use_timestamp}{logical to use the timestamp provided
 in the data file, or to use the sampling-rate provided in the
@@ -33,4 +34,7 @@ The data frame returned has a column called \code{instant}, which is a double
 representing the time (s) since the start of the waveform. The remaining
 columns represent the the channels in the comtrade object, and are
 named according to the \code{channel_name} argument.
+}
+\examples{
+  ct_instant(keating_1999)
 }

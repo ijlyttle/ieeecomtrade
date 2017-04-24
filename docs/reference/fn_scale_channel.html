@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • ieeecomtrade</title>
+<title>Get function to scale analog-channel — fn_scale_channel • ieeecomtrade</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -77,100 +77,45 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.0.0.9000</small>
-      </h1>
+    <h1>Get function to scale analog-channel</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    
+    <p>Given a config file and an analog-channel number,
+return a function to scale the value.</p>
+    
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <pre class="usage"><span class='fu'>fn_scale_channel</span>(<span class='no'>config</span>, <span class='no'>i_analog</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>config</th>
+      <td><p>list, configuration generated using <code><a href='ct_read_config.html'>ct_read_config()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>i_analog</th>
+      <td><p>integer, analog channel-number</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="comtrade.html">comtrade</a></code> </p>
-          </td>
-          <td><p>comtrade constructor</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_attr.html">ct_attr</a></code> </p>
-          </td>
-          <td><p>Make a function that gets variable-names</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_channel_name.html">ct_channel_name</a></code> </p>
-          </td>
-          <td><p>Helper function for channel names</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_example.html">ct_example</a></code> </p>
-          </td>
-          <td><p>path to example</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_instant.html">ct_instant</a></code> </p>
-          </td>
-          <td><p>Make an "instant" data frame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_read_config.html">ct_read_config</a></code> </p>
-          </td>
-          <td><p>Read config file</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_read_data_config.html">ct_read_data_config</a></code> </p>
-          </td>
-          <td><p>Read data file using config information</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_read_data.html">ct_read_data</a></code> </p>
-          </td>
-          <td><p>Read data file</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ct_read_zip.html">ct_read_zip</a></code> </p>
-          </td>
-          <td><p>Read a zip file to make a comtrade object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="keating_1999.html">keating_1999</a></code> </p>
-          </td>
-          <td><p>Keating waveform, 1999 format</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <p>function that takes a value and returns a scaled value</p>
+    
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 

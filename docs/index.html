@@ -34,6 +34,9 @@
 <li>
   <a href="articles/index.html">Articles</a>
 </li>
+<li>
+  <a href="news/index.html">News</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -62,16 +65,63 @@
 <div id="ieeecomtrade" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#ieeecomtrade" class="anchor"></a>ieeecomtrade</h1></div>
-<p>Here is where I start to argue with myself on the API.</p>
-<p>We could be provided a zip file.</p>
-<p>We could be provided a header file.</p>
-<p>We could be provided a data file.</p>
-<p>We use the header file to make a list of metadata. Some of this metadata is useful only to read the data, other metadata is useful to understand the context of the waveform.</p>
-<p>We could have a functions to read the header file, data file, and zip file.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ctread_header</span>(file)
-<span class="kw">ctread_data</span>(file)
-<span class="kw">ctread_zip</span>(file)</code></pre></div>
-<p>Like <strong>readr</strong>, <code>file</code> could be a path to a file, a connection, or literal data (either a single string or a raw vector).</p>
+<p>This is a package to help you work with IEEE COMTRADE files. Currently, this package is restricted to:</p>
+<ul>
+<li>COMTRADE 1999 format</li>
+<li>considers only configuration and data files</li>
+<li>data files must be ASCII</li>
+</ul>
+<p>In time, it is hoped to lift these restrictions, particularly as the need may present itself.</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>This package is not yet on CRAN. However, you can install it from GitHub:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
+<span class="kw">install_github</span>(<span class="st">"ijlyttle/ieeecomtrade"</span>)</code></pre></div>
+</div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
+<p>The central object in this package is a <strong>comtrade</strong> object. You can build a comtrade object by reading in the configuration and data files, or you can read a zip file that contains exactly one configuration file and exactly one data file.</p>
+<p>Let’s look at reading in some sample files provided with this package. As a first example, let’s build a comtrade object by reading the configuration file and data file individually.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"ieeecomtrade"</span>)
+
+config &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="reference/ct_example.html">ct_example</a></span>(<span class="st">"keating_1999.CFG"</span>) %&gt;%<span class="st">  </span><span class="co"># returns a file path</span>
+<span class="st">  </span><span class="kw"><a href="reference/ct_read_config.html">ct_read_config</a></span>()                    <span class="co"># returns a configuration object</span>
+
+data &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="reference/ct_example.html">ct_example</a></span>(<span class="st">"keating_1999.DAT"</span>) %&gt;%
+<span class="st">  </span><span class="kw"><a href="reference/ct_read_data_config.html">ct_read_data_config</a></span>(config)
+  
+keating &lt;-<span class="st"> </span><span class="kw"><a href="reference/comtrade.html">comtrade</a></span>(<span class="dt">config =</span> config, <span class="dt">data =</span> data)  </code></pre></div>
+<p>Similarly, you can read from a zip file</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">keating &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="reference/ct_example.html">ct_example</a></span>(<span class="st">"keating_1999.zip"</span>) %&gt;%
+<span class="st">  </span><span class="kw"><a href="reference/ct_read_zip.html">ct_read_zip</a></span>()</code></pre></div>
+<p>If you want a data frame with scaled values and a timestamp:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/ct_instant.html">ct_instant</a></span>(keating)
+<span class="co">#&gt; # A tibble: 2,048 × 9</span>
+<span class="co">#&gt;         instant         I1       I2        I3           I4        V1</span>
+<span class="co">#&gt;           &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  0.000000e+00  -5.671533 175.6419 -177.0687 1.100606e+00 -208.3977</span>
+<span class="co">#&gt; 2  3.256561e-05  -7.252448 175.8001 -174.1653 8.254547e-01 -215.3405</span>
+<span class="co">#&gt; 3  6.513121e-05  -9.742390 174.7522 -171.7754 1.705303e-13 -221.8280</span>
+<span class="co">#&gt; 4  9.769682e-05 -12.014955 174.7918 -169.2670 1.375758e+00 -226.4944</span>
+<span class="co">#&gt; 5  1.302624e-04 -14.247998 174.6336 -167.0154 1.650909e+00 -230.1366</span>
+<span class="co">#&gt; 6  1.628280e-04 -16.322949 174.3766 -165.6525 5.503031e-01 -235.4859</span>
+<span class="co">#&gt; 7  1.953936e-04 -18.516469 174.2580 -163.7169 5.503031e-01 -241.6320</span>
+<span class="co">#&gt; 8  2.279592e-04 -21.085456 174.4161 -161.3468 2.751516e-01 -248.5748</span>
+<span class="co">#&gt; 9  2.605248e-04 -22.903508 173.9021 -159.8062 1.705303e-13 -254.1518</span>
+<span class="co">#&gt; 10 2.930904e-04 -24.780845 174.0405 -158.6014 1.375758e+00 -258.1354</span>
+<span class="co">#&gt; # ... with 2,038 more rows, and 3 more variables: V2 &lt;dbl&gt;, V3 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   V4 &lt;dbl&gt;</span></code></pre></div>
+</div>
+<div id="code-if-conduct" class="section level2">
+<h2 class="hasAnchor">
+<a href="#code-if-conduct" class="anchor"></a>Code if Conduct</h2>
+<p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+</div>
 </div>
 </div>
   </div>

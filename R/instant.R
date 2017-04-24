@@ -7,11 +7,12 @@
 #' columns represent the the channels in the comtrade object, and are
 #' named according to the `channel_name` argument.
 #'
-#' @param ct            comtrade object (see [comtrade()])
-#' @param channel_name  list with two members: `analog` and `digital` -
-#'  each of which is a vector of character column-names. You can use
-#'  [`ct_channel_name()`] to get names. `NULL` indicates
-#'  to use the default names.
+#' @param ct            comtrade object (see [`comtrade()`])
+#' @param channel_name  list or function -
+#'  list has two members: `analog` and `digital` -
+#'  each of which is a vector of character column-names.
+#'  function must take one argument, `ct`, and return such a list of names.
+#'  A convenience function, [`ct_attr()`] is provided.
 #' @param use_timestamp logical to use the timestamp provided
 #'   in the data file, or to use the sampling-rate provided in the
 #'   configuration file.
@@ -19,18 +20,25 @@
 #'   secondary values
 #'
 #' @return data frame
+#' @examples
+#'   ct_instant(keating_1999)
 #' @export
 #'
-ct_instant <- function(ct, channel_name = NULL, use_timestamp = FALSE,
+ct_instant <- function(ct, channel_name = ct_attr("ph"), use_timestamp = FALSE,
                         side = c("primary", "secondary")){
 
   assertthat::assert_that(
     inherits(ct, "comtrade"),
-    is.list(channel_name) || is.null(channel_name),
+    is.function(channel_name) || is.list(channel_name),
     is.logical(use_timestamp)
   )
 
   side <- match.arg(side)
+
+  # if function, use it
+  if (is.function(channel_name)) {
+    channel_name <- channel_name(ct)
+  }
 
   # look at channel_name, make sure that lengths match up
   assertthat::assert_that(
@@ -93,13 +101,16 @@ ct_instant <- function(ct, channel_name = NULL, use_timestamp = FALSE,
   data
 }
 
-#' helper function for channel names
+#' Helper function for channel names
 #'
 #' @inheritParams ct_instant
 #' @param attr character indicating which attribute of channels to use as names
 #'
 #' @return list with two members: `analog` and `digital` -
 #'  each of which is a vector of character column-names
+#' @examples
+#'   ct_channel_name(keating_1999, attr = "ch_id")
+#'   ct_channel_name(keating_1999, attr = "ph")
 #' @export
 #'
 ct_channel_name <- function(ct, attr = c("ch_id", "ph")) {
@@ -114,6 +125,27 @@ ct_channel_name <- function(ct, attr = c("ch_id", "ph")) {
     analog = ct[["config"]][["analog_channel"]][[attr]],
     digital = ct[["config"]][["digital_channel"]][[attr]]
   )
+}
+
+#' Make a function that gets variable-names
+#'
+#' This is essentially a wrapper for [`ct_channel_name()`],
+#' allowing you to delay the evaluation of the comtrade object.
+#'
+#' @inheritParams ct_channel_name
+#'
+#' @return function to get variable-names from config
+#' @examples
+#'   ch_name <- ct_attr("ch_id")
+#'   ch_name(keating_1999)
+#' @export
+#'
+ct_attr <- function(attr = c("ch_id", "ph")) {
+
+  function(ct) {
+    ct_channel_name(ct, attr = attr)
+  }
+
 }
 
 

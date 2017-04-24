@@ -1,10 +1,17 @@
-#' read data file
+#' Read data file using config information
+#'
+#' This is a wrapper for [`ct_read_data()`].
 #'
 #' @inheritParams ct_read_config
 #' @param config list created using [`ct_read_config()`]
 #'
-#' @return tibble, specified in `vignette("data")`
+#' @return tibble (data frame)
+#' @examples
+#'   config <- ct_example("keating_1999.CFG") %>% ct_read_config()
+#'   ct_example("keating_1999.DAT") %>% ct_read_data_config(config)
+#' @seealso [`ct_read_data()`]
 #' @export
+#'
 #'
 ct_read_data_config <- function(file, config){
 
@@ -19,14 +26,25 @@ ct_read_data_config <- function(file, config){
   )
 }
 
-#' read data file
+#' Read data file
+#'
+#' In practice, it may be easier to use [`ct_read_data_config()`].
 #'
 #' @inheritParams ct_read_config
 #' @param n_analog  integer, number of analog channels
 #' @param n_digital integer, number of digital channels
 #' @param n_max  integer, maximum number of records to read
 #'
-#' @return tibble, specified in `vignette("data")`
+#' @return tibble (data frame)
+#' @examples
+#'   config <- ct_example("keating_1999.CFG") %>% ct_read_config()
+#'   ct_example("keating_1999.DAT") %>%
+#'     ct_read_data(
+#'       n_analog = config[["##A"]],
+#'       n_digital = config[["##D"]],
+#'       n_max = max(config$sampling_rate$endsamp)
+#'     )
+#' @seealso [`ct_read_data_config()`]
 #' @export
 #'
 ct_read_data <- function(file, n_analog, n_digital, n_max = Inf) {

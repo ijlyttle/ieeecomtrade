@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_data.R
 \name{ct_read_data}
 \alias{ct_read_data}
-\title{read data file}
+\title{Read data file}
 \usage{
 ct_read_data(file, n_analog, n_digital, n_max = Inf)
 }
@@ -16,8 +16,20 @@ ct_read_data(file, n_analog, n_digital, n_max = Inf)
 \item{n_max}{integer, maximum number of records to read}
 }
 \value{
-tibble, specified in \code{vignette("data")}
+tibble (data frame)
 }
 \description{
-read data file
+In practice, it may be easier to use \code{\link[=ct_read_data_config]{ct_read_data_config()}}.
+}
+\examples{
+  config <- ct_example("keating_1999.CFG") \%>\% ct_read_config()
+  ct_example("keating_1999.DAT") \%>\%
+    ct_read_data(
+      n_analog = config[["##A"]],
+      n_digital = config[["##D"]],
+      n_max = max(config$sampling_rate$endsamp)
+    )
+}
+\seealso{
+\code{\link[=ct_read_data_config]{ct_read_data_config()}}
 }

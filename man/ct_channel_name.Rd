@@ -2,7 +2,7 @@
 % Please edit documentation in R/instant.R
 \name{ct_channel_name}
 \alias{ct_channel_name}
-\title{helper function for channel names}
+\title{Helper function for channel names}
 \usage{
 ct_channel_name(ct, attr = c("ch_id", "ph"))
 }
@@ -16,5 +16,9 @@ list with two members: \code{analog} and \code{digital} -
 each of which is a vector of character column-names
 }
 \description{
-helper function for channel names
+Helper function for channel names
+}
+\examples{
+  ct_channel_name(keating_1999, attr = "ch_id")
+  ct_channel_name(keating_1999, attr = "ph")
 }
