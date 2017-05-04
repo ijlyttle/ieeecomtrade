@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Make sure you put in the reference to the standard.
+Note: Make sure you put in the reference to the standard.
 
 Right now, the only version this package supports is 1999.
 
@@ -70,8 +70,5 @@ This list contains some data frames.
 `samp`            | double     | yes      | sample rate (Hz.)
 `endsamp`         | integer    | yes      | sample number, `n` of the last sample at this rate
 
-Note: the cases `nrates != 1` will be tricky.
-
-Note: initially, we will not support primary/secondary scaling.
 
 

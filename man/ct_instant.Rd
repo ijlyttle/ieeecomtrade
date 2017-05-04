@@ -8,7 +8,7 @@ ct_instant(ct, channel_name = ct_attr("ph"), use_timestamp = FALSE,
   side = c("primary", "secondary"))
 }
 \arguments{
-\item{ct}{comtrade object (see \code{\link[=comtrade]{comtrade()}})}
+\item{ct}{\code{comtrade} S3 object constructed using \code{\link[=comtrade]{comtrade()}}}
 
 \item{channel_name}{list or function -
 list has two members: \code{analog} and \code{digital} -

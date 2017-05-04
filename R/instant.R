@@ -7,7 +7,7 @@
 #' columns represent the the channels in the comtrade object, and are
 #' named according to the `channel_name` argument.
 #'
-#' @param ct            comtrade object (see [`comtrade()`])
+#' @param ct            `comtrade` S3 object constructed using [`comtrade()`]
 #' @param channel_name  list or function -
 #'  list has two members: `analog` and `digital` -
 #'  each of which is a vector of character column-names.

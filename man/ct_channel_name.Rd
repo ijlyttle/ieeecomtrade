@@ -7,7 +7,7 @@
 ct_channel_name(ct, attr = c("ch_id", "ph"))
 }
 \arguments{
-\item{ct}{comtrade object (see \code{\link[=comtrade]{comtrade()}})}
+\item{ct}{\code{comtrade} S3 object constructed using \code{\link[=comtrade]{comtrade()}}}
 
 \item{attr}{character indicating which attribute of channels to use as names}
 }

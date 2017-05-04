@@ -1,5 +1,7 @@
 # ieeecomtrade 0.0.0.9000
 
+* Adds function `ct_sample_per_cycle_single()` to extract the samples-per-cycle.
+
 * Adds `vignette("config")` to detail the structure of the configuation object.
 
 * Adds function read a zip-file into a comtrade object, `ct_read_zip()`.
