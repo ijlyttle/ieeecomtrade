@@ -1,4 +1,4 @@
-#' Samples per cycle.
+#' Sample rates.
 #'
 #' This is a convenience function for those cases where the comtrade file has
 #' **exactly one** sampling frequency.
@@ -9,9 +9,15 @@
 #'
 #' @inheritParams ct_instant
 #'
-#' @return `integer` estimate of number of samples per cycle
+#' @return An `integer`, estimate of number of samples per cycle.
+#' @examples
+#'   library("ieeecomtrade")
 #'
-ct_sample_per_cycle_single <- function(ct) {
+#'   ct_sample_per_cycle(keating_1999)
+#'   ct_sample_rate_nominal(keating_1999)
+#' @export
+#'
+ct_sample_per_cycle <- function(ct) {
 
   assertthat::assert_that(
     inherits(ct, "comtrade"),
@@ -27,4 +33,17 @@ ct_sample_per_cycle_single <- function(ct) {
   sample_per_cycle <- bitwShiftL(1L, as.integer(round(exponent)))
 
   sample_per_cycle
+}
+
+#' @rdname ct_sample_per_cycle
+#' @export
+#' @return A `numeric`, estimate of nominal sampling-rate (Hz.).
+#'
+ct_sample_rate_nominal <- function(ct) {
+
+  sample_rate_nominal <-
+    ct_sample_per_cycle(ct) *
+    ct$config$lf
+
+  sample_rate_nominal
 }

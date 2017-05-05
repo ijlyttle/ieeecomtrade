@@ -13,10 +13,12 @@
 #'  each of which is a vector of character column-names.
 #'  function must take one argument, `ct`, and return such a list of names.
 #'  A convenience function, [`ct_attr()`] is provided.
-#' @param use_timestamp logical to use the timestamp provided
+#' @param channel_type  `character` to indicate which channel types to return.
+#'   Default is to return both `"analog"` and `"digital"`.
+#' @param use_timestamp `logical` to use the timestamp provided
 #'   in the data file, or to use the sampling-rate provided in the
 #'   configuration file.
-#' @param side          character to indicate if we want primary or
+#' @param side          `character` to indicate if we want primary or
 #'   secondary values
 #'
 #' @return data frame
@@ -24,8 +26,9 @@
 #'   ct_instant(keating_1999)
 #' @export
 #'
-ct_instant <- function(ct, channel_name = ct_attr("ph"), use_timestamp = FALSE,
-                        side = c("primary", "secondary")){
+ct_instant <- function(ct, channel_type = c("analog", "digital"),
+                       channel_name = ct_attr("ph"), use_timestamp = FALSE,
+                       side = c("primary", "secondary")){
 
   assertthat::assert_that(
     inherits(ct, "comtrade"),
@@ -34,6 +37,7 @@ ct_instant <- function(ct, channel_name = ct_attr("ph"), use_timestamp = FALSE,
   )
 
   side <- match.arg(side)
+  channel_type <- match.arg(channel_type, several.ok = TRUE)
 
   # if function, use it
   if (is.function(channel_name)) {
@@ -97,6 +101,22 @@ ct_instant <- function(ct, channel_name = ct_attr("ph"), use_timestamp = FALSE,
 
     data[[ch_name]] <- data[[ch_name]] %>% scale_channel() %>% scale_side()
   }
+
+  # select analog, digital columns
+
+  colname_keep <- "instant"
+
+  if ("analog" %in% channel_type) {
+    colname_keep <- c(colname_keep, channel_name[["analog"]])
+  }
+
+  if ("digital" %in% channel_type) {
+    colname_keep <- c(colname_keep, channel_name[["digital"]])
+  }
+
+  data <-
+    data %>%
+    dplyr::select_(.dots = colname_keep)
 
   data
 }

@@ -4,11 +4,15 @@
 \alias{ct_instant}
 \title{Make an "instant" data frame}
 \usage{
-ct_instant(ct, channel_name = ct_attr("ph"), use_timestamp = FALSE,
-  side = c("primary", "secondary"))
+ct_instant(ct, channel_type = c("analog", "digital"),
+  channel_name = ct_attr("ph"), use_timestamp = FALSE, side = c("primary",
+  "secondary"))
 }
 \arguments{
 \item{ct}{\code{comtrade} S3 object constructed using \code{\link[=comtrade]{comtrade()}}}
+
+\item{channel_type}{\code{character} to indicate which channel types to return.
+Default is to return both \code{"analog"} and \code{"digital"}.}
 
 \item{channel_name}{list or function -
 list has two members: \code{analog} and \code{digital} -
@@ -16,11 +20,11 @@ each of which is a vector of character column-names.
 function must take one argument, \code{ct}, and return such a list of names.
 A convenience function, \code{\link[=ct_attr]{ct_attr()}} is provided.}
 
-\item{use_timestamp}{logical to use the timestamp provided
+\item{use_timestamp}{\code{logical} to use the timestamp provided
 in the data file, or to use the sampling-rate provided in the
 configuration file.}
 
-\item{side}{character to indicate if we want primary or
+\item{side}{\code{character} to indicate if we want primary or
 secondary values}
 }
 \value{

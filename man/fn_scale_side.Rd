@@ -11,7 +11,7 @@ fn_scale_side(config, i_analog, side = c("primary", "secondary"))
 
 \item{i_analog}{integer, analog channel-number}
 
-\item{side}{character to indicate if we want primary or
+\item{side}{\code{character} to indicate if we want primary or
 secondary values}
 }
 \value{

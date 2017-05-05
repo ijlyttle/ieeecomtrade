@@ -1,6 +1,10 @@
 # ieeecomtrade 0.0.0.9000
 
-* Adds function `ct_sample_per_cycle_single()` to extract the samples-per-cycle.
+* Adds argument to `ct_instant()`, allowing you to specify to return digital or analog channels.
+
+* Adds function `ct_sample_rate_nominal()` (single sampling-rate only).
+
+* Adds function `ct_sample_per_cycle()` to extract the samples-per-cycle (single sampling-rate only).
 
 * Adds `vignette("config")` to detail the structure of the configuation object.
 
