@@ -1,3 +1,9 @@
+# ieeecomtrade 0.0.0.9001
+
+* Adds accessor functions `ct_sampling_frequency()` and `ct_electrical_frequency_nominal()`.
+
+* Renames `ct_sample_rate_nominal()` to `ct_sampling_frequency_nominal()`.
+
 # ieeecomtrade 0.0.0.9000
 
 * Adds argument to `ct_instant()`, allowing you to specify to return digital or analog channels.

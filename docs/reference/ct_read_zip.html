@@ -125,19 +125,19 @@
 #&gt; [1] 0
 #&gt; 
 #&gt; $config$analog_channel
-#&gt; # A tibble: 8 × 13
-#&gt;      An ch_id    ph                         ccbm     uu           a           b
-#&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                        &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
-#&gt; 1     1    I1    I1 4_Victoria_Keating.main_7650 ampere -0.01976144   25.373688
-#&gt; 2     2    I2    I2 4_Victoria_Keating.main_7650 ampere -0.01977059   25.859930
-#&gt; 3     3    I3    I3 4_Victoria_Keating.main_7650 ampere -0.01975111   24.412369
-#&gt; 4     4    I4    I4 4_Victoria_Keating.main_7650 ampere -0.27515155 -476.287334
-#&gt; 5     5    U1    V1 4_Victoria_Keating.main_7650   volt -0.11381631    8.422407
-#&gt; 6     6    U2    V2 4_Victoria_Keating.main_7650   volt -0.11388410    3.074871
-#&gt; 7     7    U3    V3 4_Victoria_Keating.main_7650   volt -0.11343370    6.011986
-#&gt; 8     8    U4    V4 4_Victoria_Keating.main_7650   volt -0.03804154    0.494540
-#&gt; # ... with 6 more variables: skew &lt;dbl&gt;, min &lt;int&gt;, max &lt;int&gt;, primary &lt;dbl&gt;,
-#&gt; #   secondary &lt;dbl&gt;, PS &lt;fctr&gt;
+#&gt; # A tibble: 8 x 13
+#&gt;      An ch_id    ph                         ccbm     uu           a
+#&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                        &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;
+#&gt; 1     1    I1    I1 4_Victoria_Keating.main_7650 ampere -0.01976144
+#&gt; 2     2    I2    I2 4_Victoria_Keating.main_7650 ampere -0.01977059
+#&gt; 3     3    I3    I3 4_Victoria_Keating.main_7650 ampere -0.01975111
+#&gt; 4     4    I4    I4 4_Victoria_Keating.main_7650 ampere -0.27515155
+#&gt; 5     5    U1    V1 4_Victoria_Keating.main_7650   volt -0.11381631
+#&gt; 6     6    U2    V2 4_Victoria_Keating.main_7650   volt -0.11388410
+#&gt; 7     7    U3    V3 4_Victoria_Keating.main_7650   volt -0.11343370
+#&gt; 8     8    U4    V4 4_Victoria_Keating.main_7650   volt -0.03804154
+#&gt; # ... with 7 more variables: b &lt;dbl&gt;, skew &lt;dbl&gt;, min &lt;int&gt;, max &lt;int&gt;,
+#&gt; #   primary &lt;dbl&gt;, secondary &lt;dbl&gt;, PS &lt;fctr&gt;
 #&gt; 
 #&gt; $config$lf
 #&gt; [1] 60
@@ -146,7 +146,7 @@
 #&gt; [1] 1
 #&gt; 
 #&gt; $config$sampling_rate
-#&gt; # A tibble: 1 × 2
+#&gt; # A tibble: 1 x 2
 #&gt;       samp endsamp
 #&gt;      &lt;dbl&gt;   &lt;int&gt;
 #&gt; 1 30707.24    2048
@@ -166,18 +166,18 @@
 #&gt; 
 #&gt; 
 #&gt; $data
-#&gt; # A tibble: 2,048 × 10
+#&gt; # A tibble: 2,048 x 10
 #&gt;        n timestamp a000001 a000002 a000003 a000004 a000005 a000006 a000007
 #&gt;    &lt;int&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
-#&gt; 1      1        NA    1571   -7576   10201   -1735    1905   -4321    2575
-#&gt; 2      2        NA    1651   -7584   10054   -1734    1966   -4324    2507
-#&gt; 3      3        NA    1777   -7531    9933   -1731    2023   -4339    2465
-#&gt; 4      4        NA    1892   -7533    9806   -1736    2064   -4352    2429
-#&gt; 5      5        NA    2005   -7525    9692   -1737    2096   -4349    2392
-#&gt; 6      6        NA    2110   -7512    9623   -1733    2143   -4335    2333
-#&gt; 7      7        NA    2221   -7506    9525   -1733    2197   -4329    2268
-#&gt; 8      8        NA    2351   -7514    9405   -1732    2258   -4330    2201
-#&gt; 9      9        NA    2443   -7488    9327   -1731    2307   -4326    2151
+#&gt;  1     1        NA    1571   -7576   10201   -1735    1905   -4321    2575
+#&gt;  2     2        NA    1651   -7584   10054   -1734    1966   -4324    2507
+#&gt;  3     3        NA    1777   -7531    9933   -1731    2023   -4339    2465
+#&gt;  4     4        NA    1892   -7533    9806   -1736    2064   -4352    2429
+#&gt;  5     5        NA    2005   -7525    9692   -1737    2096   -4349    2392
+#&gt;  6     6        NA    2110   -7512    9623   -1733    2143   -4335    2333
+#&gt;  7     7        NA    2221   -7506    9525   -1733    2197   -4329    2268
+#&gt;  8     8        NA    2351   -7514    9405   -1732    2258   -4330    2201
+#&gt;  9     9        NA    2443   -7488    9327   -1731    2307   -4326    2151
 #&gt; 10    10        NA    2538   -7495    9266   -1736    2342   -4328    2109
 #&gt; # ... with 2,038 more rows, and 1 more variables: a000008 &lt;int&gt;
 #&gt; 
