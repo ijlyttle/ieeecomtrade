@@ -37,7 +37,7 @@ spec <- list(
   dtm_trigger =
   nanotime(ymd_hms("2015-11-18T05:33:03Z")) +
     .790289000 * 1.e9,
-  ft = factor("ascii", levels = c("ascii", "binary")),
+  ft = factor("ASCII", levels = c("ASCII", "BINARY")),
   timemult = 1
 )
 

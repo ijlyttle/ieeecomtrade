@@ -220,8 +220,7 @@ parse_file_type <- function(text) {
 
   file_type[["ft"]] <-
     file_type[["ft"]] %>%
-    tolower() %>%
-    factor(levels = c("ascii", "binary"))
+    factor(levels = c("ASCII", "BINARY"))
 
   file_type
 }
