@@ -213,8 +213,8 @@ fn_scale_side <- function(config, i_analog, side = c("primary", "secondary")) {
   )
 
   measurement_key <- c(
-    p = "primary",
-    s = "secondary"
+    P = "primary",
+    S = "secondary"
   )
 
   measurement <-

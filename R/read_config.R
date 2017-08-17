@@ -145,8 +145,7 @@ parse_analog_channel <- function(text) {
 
   analog_channel[["PS"]] <-
     analog_channel[["PS"]] %>%
-    tolower() %>%
-    factor(levels = c("p", "s"))
+    factor(levels = c("P", "S"))
 
   analog_channel
 }
