@@ -73,8 +73,8 @@ ct_read_config <- function(file){
   #
   # TODO: ask Dave Glasgow about nanosecond-precision datetimes
   # not using c() so as to avoid stripping the nanotime attributes
-  config[["dtm_first"]] <- parse_nanotime(text[index + 1])
-  config[["dtm_trigger"]] <- parse_nanotime(text[index + 2])
+  config[["instant_first"]] <- parse_nanotime(text[index + 1])
+  config[["instant_trigger"]] <- parse_nanotime(text[index + 2])
 
   # data type (ascii or binary)
   #
