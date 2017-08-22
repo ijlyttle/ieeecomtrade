@@ -42,7 +42,7 @@ print(keating_1999)
     ## [1] 0
     ## 
     ## $config$analog_channel
-    ## # A tibble: 8 × 13
+    ## # A tibble: 8 x 13
     ##      An ch_id    ph                         ccbm     uu           a
     ##   <int> <chr> <chr>                        <chr>  <chr>       <dbl>
     ## 1     1    I1    I1 4_Victoria_Keating.main_7650 ampere -0.01976144
@@ -63,38 +63,52 @@ print(keating_1999)
     ## [1] 1
     ## 
     ## $config$sampling_rate
-    ## # A tibble: 1 × 2
+    ## # A tibble: 1 x 2
     ##       samp endsamp
     ##      <dbl>   <int>
     ## 1 30707.24    2048
     ## 
-    ## $config$dtm_first
-    ## [1] "2015-11-18T05:33:03.765333000+00:00"
+    ## $config$instant_first
+    ## integer64
+    ## [1] 1447824783765333000
+    ## attr(,".S3Class")
+    ## [1] integer64
+    ## attr(,"class")
+    ## [1] nanotime
+    ## attr(,"class")attr(,"package")
+    ## [1] nanotime
     ## 
-    ## $config$dtm_trigger
-    ## [1] "2015-11-18T05:33:03.790289000+00:00"
+    ## $config$instant_trigger
+    ## integer64
+    ## [1] 1447824783790289000
+    ## attr(,".S3Class")
+    ## [1] integer64
+    ## attr(,"class")
+    ## [1] nanotime
+    ## attr(,"class")attr(,"package")
+    ## [1] nanotime
     ## 
     ## $config$ft
-    ## [1] ascii
-    ## Levels: ascii binary
+    ## [1] ASCII
+    ## Levels: ASCII BINARY
     ## 
     ## $config$timemult
     ## [1] 1
     ## 
     ## 
     ## $data
-    ## # A tibble: 2,048 × 10
+    ## # A tibble: 2,048 x 10
     ##        n timestamp a000001 a000002 a000003 a000004 a000005 a000006 a000007
     ##    <int>     <int>   <int>   <int>   <int>   <int>   <int>   <int>   <int>
-    ## 1      1        NA    1571   -7576   10201   -1735    1905   -4321    2575
-    ## 2      2        NA    1651   -7584   10054   -1734    1966   -4324    2507
-    ## 3      3        NA    1777   -7531    9933   -1731    2023   -4339    2465
-    ## 4      4        NA    1892   -7533    9806   -1736    2064   -4352    2429
-    ## 5      5        NA    2005   -7525    9692   -1737    2096   -4349    2392
-    ## 6      6        NA    2110   -7512    9623   -1733    2143   -4335    2333
-    ## 7      7        NA    2221   -7506    9525   -1733    2197   -4329    2268
-    ## 8      8        NA    2351   -7514    9405   -1732    2258   -4330    2201
-    ## 9      9        NA    2443   -7488    9327   -1731    2307   -4326    2151
+    ##  1     1        NA    1571   -7576   10201   -1735    1905   -4321    2575
+    ##  2     2        NA    1651   -7584   10054   -1734    1966   -4324    2507
+    ##  3     3        NA    1777   -7531    9933   -1731    2023   -4339    2465
+    ##  4     4        NA    1892   -7533    9806   -1736    2064   -4352    2429
+    ##  5     5        NA    2005   -7525    9692   -1737    2096   -4349    2392
+    ##  6     6        NA    2110   -7512    9623   -1733    2143   -4335    2333
+    ##  7     7        NA    2221   -7506    9525   -1733    2197   -4329    2268
+    ##  8     8        NA    2351   -7514    9405   -1732    2258   -4330    2201
+    ##  9     9        NA    2443   -7488    9327   -1731    2307   -4326    2151
     ## 10    10        NA    2538   -7495    9266   -1736    2342   -4328    2109
     ## # ... with 2,038 more rows, and 1 more variables: a000008 <int>
     ## 
@@ -113,4 +127,4 @@ Finally, write to package-data:
 use_data(keating_1999, overwrite = TRUE)
 ```
 
-    ## Saving keating_1999 as keating_1999.rda to /Users/ijlyttle/Documents/git/github/public_me/ieeecomtrade/data
+    ## Saving keating_1999 as keating_1999.rda to /Users/ijlyttle/Documents/git/github/PQ-Waveform/ieeecomtrade/data

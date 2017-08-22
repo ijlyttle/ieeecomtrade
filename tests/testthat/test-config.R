@@ -31,10 +31,10 @@ spec <- list(
     ~samp, ~endsamp,
     30707.244140625, 2048L
   ),
-  dtm_first =
+  instant_first =
     nanotime(ymd_hms("2015-11-18T05:33:03Z")) +
     .765333000 * 1.e9,
-  dtm_trigger =
+  instant_trigger =
   nanotime(ymd_hms("2015-11-18T05:33:03Z")) +
     .790289000 * 1.e9,
   ft = factor("ASCII", levels = c("ASCII", "BINARY")),

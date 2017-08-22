@@ -1,3 +1,7 @@
+# ieeecomtrade 0.0.0.9002
+
+* Within config, renames `dtm_first`, `dtm_trigger` to `instant_first`, `instant_trigger`
+
 # ieeecomtrade 0.0.0.9001
 
 * Adds accessor functions `ct_sampling_frequency()` and `ct_electrical_frequency_nominal()`.
